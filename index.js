@@ -13,7 +13,7 @@ function getLink(location) {
     const linkBase = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/';
     const locationURI = encodeURIComponent(location);
     const endOfLink = '?key=GEYL5HV7S2VFDCXSME4MTDTLK';
-    
+
     const link = linkBase + locationURI + endOfLink;
 
     //console.log(link);
@@ -48,5 +48,3 @@ function getSpecificData(allData) {
 
     console.log(specificData);
 }
-
-//getWeatherData();
