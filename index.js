@@ -1,4 +1,4 @@
 //import { getWeatherData } from './weatherData.js';
-import { inputLocation, displayData } from './dom.js';
+import { inputLocation } from './dom.js';
 
 inputLocation();

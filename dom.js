@@ -33,23 +33,65 @@ function addSpacesAndCapitalizeFirstLetter(input) {
 
 export function displayData(data) {
     //console.log(Object.entries(data));
-    const body = document.querySelector('body');
+    const dataDisplay = document.getElementById('dataDisplay');
+
+    dataDisplay.textContent = '';
+    const dataSubHeader = document.createElement('div');
+    dataSubHeader.id = 'dataSubHeader';
+    const dataMain = document.createElement('div');
+    dataMain.id = 'dataMain';
 
     for (const [key, value] of Object.entries(data)) {
         //console.log(`key: ${key}, value: ${value}`);
 
         const formattedKey = addSpacesAndCapitalizeFirstLetter(key);
         const formattedValue = addSpacesAndCapitalizeFirstLetter(value);
-        const property = document.createElement('p');
+        
+        const dataDiv = document.createElement('div');
+        dataDiv.classList.add('dataDiv');
+        const categoryName = document.createElement('p');
+        const categoryValue = document.createElement('h2');
 
-        if (key === 'address' || key === 'dateTime' || key === 'description') {
-            property.textContent = formattedValue;
-        } else if (key === 'uvIndex') {
-            property.textContent = `UV Index: ${formattedValue}`;
-        } else {
-            property.textContent = `${formattedKey}: ${formattedValue}`;
+        if (key === 'dateTime') {
+
         }
 
-        body.appendChild(property);
+        if (key === 'address') {
+            const location = document.createElement('h1');
+            location.textContent = formattedValue;
+            dataDisplay.appendChild(location);
+        } else if (key === 'dateTime' || key === 'description' || key === 'conditions') {
+            const subHeaderContent = document.createElement('p');
+
+            if (key === 'dateTime' || key === 'description') {
+                subHeaderContent.textContent = formattedValue;
+            } else if (key === 'conditions') {
+                subHeaderContent.textContent = `${formattedKey}: ${formattedValue}`;
+            }
+            dataSubHeader.append(subHeaderContent);
+        } else {
+            if (formattedValue === null || formattedValue === undefined) {
+                continue;
+            } else {
+                if (key === 'uvIndex') {
+                    categoryName.textContent = 'UV Index';
+                    categoryValue.textContent = `${formattedValue}\u002F10`;
+                } else {
+                    categoryName.textContent = formattedKey;
+                    if (key === 'currentTemperature' || key === 'feelsLike') {
+                        categoryValue.textContent = `${formattedValue}\u00B0F`;
+                    } else if (key === 'humidity' || key === 'precipitationProbability') {
+                        categoryValue.textContent = `${formattedValue}\u0025`;
+                    } else if (key === 'precipitation') {
+                        categoryValue.textContent = `${formattedValue} in`;
+                    } else {
+                        categoryValue.textContent = formattedValue;
+                    }
+                }
+            }
+            dataDiv.append(categoryName, categoryValue);
+            dataMain.appendChild(dataDiv);
+        }
+        dataDisplay.append(dataSubHeader, dataMain);
     }
 }
