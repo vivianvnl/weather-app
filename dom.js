@@ -1,4 +1,5 @@
 import { getLink, fetchData, getSpecificData } from './weatherData.js';
+import { addSpacesAndCapitalizeFirstLetter, convertMilitaryTimeToStandardTime } from './conversions.js';
 
 export function inputLocation() {
     const form = document.querySelector('form');
@@ -32,41 +33,6 @@ export function inputLocation() {
     }
 }
 
-function addSpacesAndCapitalizeFirstLetter(input) {
-    if (typeof input === 'string') {
-        const formattedString = input
-            .replace(/([a-z])([A-Z])/g, '$1 $2')
-            .replace(/^./, function(str){ return str.toUpperCase(); })
-        return formattedString;
-    } else {
-        return input;
-    }
-}
-
-function convertMilitaryTimeToStandardTime(givenTime) {
-    const givenTimeNoSeconds = givenTime.slice(0, -3);
-    const [hoursStr, minutesStr] = givenTimeNoSeconds.split(':');
-    let hours = parseInt(hoursStr, 10);
-    const minutes = parseInt(minutesStr, 10);
-
-    let ampm = 'AM';
-
-    // Determine AM/PM and convert hours
-    if (hours >= 12) {
-        ampm = 'PM';
-        if (hours > 12) {
-        hours -= 12;
-        }
-    } else if (hours === 0) {
-        hours = 12; // 00:xx is 12 AM
-    }
-
-    // Format minutes to always have two digits
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-
-    return `${hours}:${formattedMinutes} ${ampm}`;
-}
-
 export function displayData(data) {
     //console.log(Object.entries(data));
     const dataDisplay = document.getElementById('dataDisplay');
@@ -74,7 +40,7 @@ export function displayData(data) {
 
     if (typeof data !== 'object') {
         const error = document.createElement('h1');
-        error.textContent = 'Place does not exist. Please try again!';
+        error.textContent = 'Place not found. Please try again!';
         dataDisplay.append(error);
     } else {
         const dataSubHeader = document.createElement('div');

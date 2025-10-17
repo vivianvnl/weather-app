@@ -1,1 +1,2 @@
-- verify coordinates work
+- loading bar
+- weather icons

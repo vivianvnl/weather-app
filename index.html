@@ -8,17 +8,23 @@
     <script type="module" src="index.js" defer></script>
 </head>
 <body>
+    <div id="welcome">
+        <h2>Welcome!</h2>
+        <h2 id="localDateTime"></h2>
+    </div>
+
     <form>
         <div id="searchbar">
-            <label for="locationInput">Enter an address, zipcode, or coordinates</label><br>
-            <input type="text" id="locationInput">
+            <label for="locationInput">Enter an address, zipcode, or coordinates</br>(long, lat)</label><br>
+            <input type="text" id="locationInput" 
+            placeholder='Ex: "Dallas", "Dallas, TX", "75001", "+32.7767, -96.7970"'>
         </div>
         
         <button type="button">Get Weather!</button>
     </form>
 
     <div id="dataDisplay">
-        <h1>Look up a place :)</h1>
+        <h1>Look up a place &#x3a;&#x29;</h1>
     </div>
 </body>
 </html>
