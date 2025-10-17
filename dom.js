@@ -35,6 +35,30 @@ function addSpacesAndCapitalizeFirstLetter(input) {
     }
 }
 
+function convertMilitaryTimeToStandardTime(givenTime) {
+    const givenTimeNoSeconds = givenTime.slice(0, -3);
+    const [hoursStr, minutesStr] = givenTimeNoSeconds.split(':');
+    let hours = parseInt(hoursStr, 10);
+    const minutes = parseInt(minutesStr, 10);
+
+    let ampm = 'AM';
+
+    // Determine AM/PM and convert hours
+    if (hours >= 12) {
+        ampm = 'PM';
+        if (hours > 12) {
+        hours -= 12;
+        }
+    } else if (hours === 0) {
+        hours = 12; // 00:xx is 12 AM
+    }
+
+    // Format minutes to always have two digits
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    return `${hours}:${formattedMinutes} ${ampm}`;
+}
+
 export function displayData(data) {
     //console.log(Object.entries(data));
     const dataDisplay = document.getElementById('dataDisplay');
@@ -61,10 +85,6 @@ export function displayData(data) {
             const categoryName = document.createElement('p');
             const categoryValue = document.createElement('h2');
 
-            if (key === 'dateTime') {
-
-            }
-
             if (key === 'address') {
                 const location = document.createElement('h1');
                 location.textContent = formattedValue;
@@ -72,7 +92,9 @@ export function displayData(data) {
             } else if (key === 'dateTime' || key === 'description' || key === 'conditions') {
                 const subHeaderContent = document.createElement('p');
 
-                if (key === 'dateTime' || key === 'description') {
+                if (key === 'dateTime') {
+                subHeaderContent.textContent = convertMilitaryTimeToStandardTime(value);
+                } else if (key === 'description') {
                     subHeaderContent.textContent = formattedValue;
                 } else if (key === 'conditions') {
                     subHeaderContent.textContent = `${formattedKey}: ${formattedValue}`;

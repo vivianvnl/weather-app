@@ -1,3 +1,2 @@
 - verify coordinates work
-- add error valid on input
-- format time
+- enter button with button
