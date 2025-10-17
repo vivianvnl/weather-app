@@ -2,7 +2,15 @@ import { getLink, fetchData, getSpecificData } from './weatherData.js';
 
 export function inputLocation() {
     const form = document.querySelector('form');
+    const input = document.querySelector('input');
     const submitBtn = document.querySelector('button');
+
+    input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            submitBtn.click();
+        }
+    });
 
     submitBtn.addEventListener('click', (event) => {
         event.preventDefault();
@@ -93,7 +101,7 @@ export function displayData(data) {
                 const subHeaderContent = document.createElement('p');
 
                 if (key === 'dateTime') {
-                subHeaderContent.textContent = convertMilitaryTimeToStandardTime(value);
+                subHeaderContent.textContent = `Last Updated (in local time): ${convertMilitaryTimeToStandardTime(value)}`;
                 } else if (key === 'description') {
                     subHeaderContent.textContent = formattedValue;
                 } else if (key === 'conditions') {
