@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Coral+Pixels&family=Doto:wght@100..900&family=Jersey+15&family=Tiny5&family=Workbench&display=swap');
+
+:root, button, input {
+    font-family: "Workbench", sans-serif;
+}
+
 :root, button {
-    color: white;
     font-size: 20px;
     font-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
+}
+
+p, label {
+    letter-spacing: 0.5px;
 }
 
 * {
@@ -10,44 +18,58 @@
     margin: 0;
 }
 
-body {
-    background-color: rgb(195, 231, 245);
-    text-align: center;
-
-    margin: 30px 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
+h1 {
+    font-size: 60px;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px rgba(87, 87, 87, 0.6);
+    font-family: "Doto", sans-serif;
 }
 
-form {
-    border: 3px ridge rgb(35, 121, 233);
-    border-radius: 10px;
-    background-color: rgb(129, 177, 240);
-    padding: 20px 40px;
-
-    display: flex;
-    gap: 15px;
+h2 {
+    position: absolute;
+    font-size: 55px;
+    top: 90px;
 }
 
-#searchbar {
-    text-align: left;
+h3, button {
+    font-family: "Coral Pixels", serif;
 }
 
-label {
-    font-size: 24px;
+#welcome {
+    background-color: blue;
+    text-shadow: 1px 1px 2px white;
 }
 
-input {
-    outline: none;
-    border: 3px inset rgb(35, 121, 233);
-    border-radius: 5px;
-    font-size: 18px;
-    width: 480px;
-    padding: 5px 10px;
-    margin-top: 5px;
+form, button:active {
+    background-color: blue;
+}
+
+button, #dataSubHeader {
+    background-color: rgb(142, 178, 255);
+}
+
+.dataDiv {
+    background-color: rgb(184, 207, 255);
+}
+
+button:hover {
+    background-color: white;
+    
+    color: rgb(89, 191, 231);
+
+    cursor: pointer;
+}
+
+h1 {
+    color: blue;
+}
+
+:root, button, button:active {
+    color: white;
+}
+
+form, input, button, .dataDiv, #dataSubHeader {
+    border-color: rgb(109, 122, 238);
 }
 
 input:focus {
@@ -55,32 +77,81 @@ input:focus {
     border-style: ridge;
 }
 
-button {
-    border: 3px outset rgb(68, 142, 172);
-    border-radius: 10px;
-    background-color: rgb(89, 191, 231);
-    padding: 8px 30px;
-    margin: 8px 0;
+form, button, #dataSubHeader,.dataDiv {
+    border-style: outset;
 }
 
-button:hover {
-    background-color: rgb(216, 241, 252);
-    color: rgb(91, 185, 223);
+input {
+    border-style: inset;
 }
 
-button:active {
-    background-color: blue;
-    color: white;
+form, input, button, #dataSubHeader, .dataDiv {
+    border-width: 3px;
 }
 
-#dataDisplay {
+body, #welcome, form, #dataSubHeader, .dataDiv {
+    display: flex;
+}
+
+body, #dataSubHeader, .dataDiv {
+    flex-direction: column;
+}
+
+body, #dataDisplay, .dataDiv {
     position: relative;
 }
 
-h1 {
-    font-size: 60px;
-    margin-bottom: 40px;
-    text-shadow: 1px 1px 2px rgba(87, 87, 87, 0.6);
+form, #dataMain, .dataDiv {
+    align-items: center;
+}
+
+body {
+    background-color: rgb(197, 206, 255);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+form, #dataDisplay {
+    align-self: center;
+}
+
+#welcome {
+    justify-content: space-between;
+    padding: 15px 45px;
+    margin-bottom: 20px;
+}
+
+form {
+    border-radius: 20px;
+    padding: 15px 30px;
+
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+#searchbar {
+    transform: translateY(2px);
+    text-align: left;
+}
+
+label {
+    font-size: 16px;
+    opacity: 0.75;
+    margin-left: 4px;
+}
+
+input {
+    outline: none;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 600px;
+    padding: 5px 10px;
+    margin-bottom: 3px;
+}
+
+button {
+    border-radius: 25px;
+    padding: 15px 30px;
 }
 
 #dataSubHeader p {
@@ -89,15 +160,11 @@ h1 {
 }
 
 #dataSubHeader {
-    border: 3px outset rgb(35, 121, 233);
     border-radius: 10px;
-    background-color: rgb(129, 177, 240);
     padding: 15px 40px;
 
     margin-bottom: 30px;
 
-    display: flex;
-    flex-direction: column;
     gap: 10px;
 }
 
@@ -108,31 +175,14 @@ h1 {
 #dataMain {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-}
-
-.dataDiv p {
-    font-size: 20px;
-}
-
-.dataDiv h2 {
-    position: absolute;
-    font-size: 55px;
-    top: 90px;
+    place-items: center;
 }
 
 .dataDiv {
     width: 200px;
     height: 225px;
 
-    border: 3px outset rgb(109, 122, 238);
     border-radius: 10px;
-    background-color: rgb(184, 207, 255);
     padding: 15px;
     margin: 10px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
 }

@@ -9,15 +9,15 @@
 </head>
 <body>
     <div id="welcome">
-        <h2>Welcome!</h2>
-        <h2 id="localDateTime"></h2>
+        <h3>Welcome!</h3>
+        <h3 id="localDateTime"></h3>
     </div>
 
     <form>
         <div id="searchbar">
-            <label for="locationInput">Enter an address, zipcode, or coordinates</br>(long, lat)</label><br>
             <input type="text" id="locationInput" 
-            placeholder='Ex: "Dallas", "Dallas, TX", "75001", "+32.7767, -96.7970"'>
+            placeholder= 'Enter a city, zipcode, or coordinates...' required><br>
+            <label for="locationInput">Ex: "Dallas", "Dallas, TX", "75001", "+32.7767, -96.7970"</label><br>
         </div>
         
         <button type="button">Get Weather!</button>

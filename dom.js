@@ -3,22 +3,34 @@ import { addSpacesAndCapitalizeFirstLetter, convertMilitaryTimeToStandardTime } 
 
 export function inputLocation() {
     const form = document.querySelector('form');
-    const input = document.querySelector('input');
+    const locationInput = document.getElementById('locationInput');
     const submitBtn = document.querySelector('button');
 
-    input.addEventListener("keypress", function(event) {
+    locationInput.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             event.preventDefault();
             submitBtn.click();
         }
     });
 
+    locationInput.addEventListener('input', () => {
+        if (locationInput.validity.valueMissing === true) {
+            locationInput.setCustomValidity('Please enter a location.');
+        } else {
+            locationInput.setCustomValidity('');
+        }
+    });
+
     submitBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        const locationInput = document.getElementById('locationInput').value;
-        //console.log(locationInput);
-        getLocationData(locationInput);
-        form.reset();
+        
+        if (locationInput.value === '') {
+            locationInput.setCustomValidity('Please enter a location.');
+        } else {
+            //console.log(locationInput);
+            getLocationData(locationInput.value);
+            form.reset();
+        }
     });
 
     async function getLocationData(location) {
