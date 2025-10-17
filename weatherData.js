@@ -1,3 +1,5 @@
+import { displayData } from './dom.js'
+
 export function getLink(location) {
     const linkBase = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/';
     const locationURI = encodeURIComponent(location);
@@ -10,11 +12,17 @@ export function getLink(location) {
 }
 
 export async function fetchData(link) {
-    const response = await fetch(link);
-    const weatherData = await response.json();
+    try {
+        const response = await fetch(link);
+        const weatherData = await response.json();
 
-    //console.log(weatherData);
-    return weatherData;
+        //console.log(weatherData);
+        return weatherData;
+    } catch(err) {
+        const errString = err.toString();
+        console.log(errString);
+        displayData(errString);
+    }
 }
 
 export function getSpecificData(allData) {
