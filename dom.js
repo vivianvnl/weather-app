@@ -33,14 +33,29 @@ export function inputLocation() {
         }
     });
 
+    const dataDisplay = document.getElementById('dataDisplay');
+    const loadingIndicator = document.getElementById('loading');
+    
+    function showLoading() {
+        loadingIndicator.style.display = 'block'; // Or 'flex', 'grid', depending on your layout
+    }
+    function hideLoading() {
+        loadingIndicator.style.display = 'none';
+    }
+
     async function getLocationData(location) {
         try {
+            dataDisplay.innerHTML = '';
+            showLoading();
+
             const data = await fetchData(getLink(location));
             const specificData = getSpecificData(data);
             //console.log(specificData);
             displayData(specificData);
         } catch(err) {
             return;
+        } finally {
+            hideLoading();
         }
     }
 }

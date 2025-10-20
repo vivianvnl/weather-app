@@ -1,4 +1,4 @@
-- loading bar
+- fix loading appearance
 - weather icons
 
 - check for validation messages for no input
