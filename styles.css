@@ -9,7 +9,11 @@
     font-weight: 600;
 }
 
-p, label {
+label, legend {
+    font-size: 16px;
+}
+
+p, label, legend {
     letter-spacing: 0.5px;
 }
 
@@ -72,32 +76,23 @@ form, input, button, .dataDiv, #dataSubHeader {
     border-color: rgb(109, 122, 238);
 }
 
-input:focus {
-    border-color: rgb(16, 4, 78);
-    border-style: ridge;
-}
-
 form, button, #dataSubHeader,.dataDiv {
     border-style: outset;
-}
-
-input {
-    border-style: inset;
 }
 
 form, input, button, #dataSubHeader, .dataDiv {
     border-width: 3px;
 }
 
-body, #welcome, form, #dataSubHeader, .dataDiv {
+main, #welcome, form, #dataSubHeader, .dataDiv {
     display: flex;
 }
 
-body, #dataSubHeader, .dataDiv {
+main, #dataSubHeader, .dataDiv {
     flex-direction: column;
 }
 
-body, #dataDisplay, .dataDiv {
+main, #dataDisplay, .dataDiv {
     position: relative;
 }
 
@@ -109,6 +104,10 @@ body {
     background-color: rgb(197, 206, 255);
     text-align: center;
     margin-bottom: 50px;
+}
+
+main {
+    margin: 0 20px;
 }
 
 form, #dataDisplay {
@@ -135,18 +134,32 @@ form {
 }
 
 label {
-    font-size: 16px;
-    opacity: 0.75;
     margin-left: 4px;
+    opacity: 0.75;
+}
+
+legend {
+    color: rgb(255, 98, 98);
+    margin: 6px 0 0 2px;
 }
 
 input {
     outline: none;
+    border-style: inset;
     border-radius: 5px;
     font-size: 18px;
     width: 600px;
     padding: 5px 10px;
     margin-bottom: 3px;
+}
+
+input:valid {
+    border: 3px solid rgb(53, 53, 53);
+}
+
+input:user-invalid {
+    border: 3px solid rgb(255, 91, 70);
+    box-shadow: 0 0 2px rgb(255, 91, 70);
 }
 
 button {

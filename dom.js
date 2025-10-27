@@ -3,6 +3,9 @@ import { addSpacesAndCapitalizeFirstLetter, convertMilitaryTimeToStandardTime } 
 
 export function inputLocation() {
     const form = document.querySelector('form');
+    const nullErrorMessage = document.createElement('legend');
+    nullErrorMessage.textContent = 'Please enter a location.';
+    const searchbar = document.getElementById('searchbar');
     const locationInput = document.getElementById('locationInput');
     const submitBtn = document.querySelector('button');
 
@@ -15,9 +18,9 @@ export function inputLocation() {
 
     locationInput.addEventListener('input', () => {
         if (locationInput.validity.valueMissing === true) {
-            locationInput.setCustomValidity('Please enter a location.');
-        } else {
-            locationInput.setCustomValidity('');
+            if (searchbar.contains(nullErrorMessage) === false) {
+                searchbar.append(nullErrorMessage);
+            }
         }
     });
 
@@ -25,7 +28,9 @@ export function inputLocation() {
         event.preventDefault();
         
         if (locationInput.value === '') {
-            locationInput.setCustomValidity('Please enter a location.');
+            if (searchbar.contains(nullErrorMessage) === false) {
+                searchbar.append(nullErrorMessage);
+            }
         } else {
             //console.log(locationInput);
             getLocationData(locationInput.value);
@@ -35,19 +40,12 @@ export function inputLocation() {
 
     const dataDisplay = document.getElementById('dataDisplay');
     const loadingIndicator = document.getElementById('loading');
-    
-    function showLoading() {
-        loadingIndicator.style.display = 'block'; // Or 'flex', 'grid', depending on your layout
-    }
-    function hideLoading() {
-        loadingIndicator.style.display = 'none';
-    }
 
     async function getLocationData(location) {
-        try {
-            dataDisplay.innerHTML = '';
-            showLoading();
+        loadingIndicator.style.display = 'block';
+        dataDisplay.innerHTML = '';
 
+        try {
             const data = await fetchData(getLink(location));
             const specificData = getSpecificData(data);
             //console.log(specificData);
@@ -55,7 +53,7 @@ export function inputLocation() {
         } catch(err) {
             return;
         } finally {
-            hideLoading();
+            loadingIndicator.style.display = 'none';
         }
     }
 }

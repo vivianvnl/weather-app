@@ -1,5 +1,3 @@
-- fix loading appearance
-- weather icons
+Goal: Create a functioning weather app.
 
-- check for validation messages for no input
-- side margins for dataMain (not working rn)
+This project didn't take too long to complete as once I got fetch down, everything else was pretty much adding a form and styling. It feels really cool to be able to load real-world data in a nice display, though. This project got me excited about the possibilities of APIs to use and ways to collect and display data.
